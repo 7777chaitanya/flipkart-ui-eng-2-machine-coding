@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+
+    <title>Flipkart support</title>
+    <link
+      rel="icon"
+      href="https://rukminim1.flixcart.com/www/300/300/promos/…019/84186c71-a505-46fa-a9cb-93e6e9382c47.png?q=90"
+      type="image/png"
+    />
+  </head>
+  <body>
+    <div id="mainContainer">
+      <div id="messageListContainer">
+        <div id="searchBox">
+          <div class="chatFilterTitle">Filter by Title / Order ID</div>
+          <input
+            type="text"
+            id="chatSearchInputField"
+            placeholder="Start typing to search"
+          />
+        </div>
+
+        <div id="messageList">
+          <!-- messages are added through script.js after fetching the data -->
+        </div>
+      </div>
+
+      <div class="singleChat">
+        <div id="chatName"></div>
+
+        <div id="chatMessages">
+          <!-- <div class='eachMessage'>
+               
+            </div> -->
+        </div>
+
+        <div id="chatInput">
+          <form id="chatInputForm">
+            <input
+              type="text"
+              placeholder="Type a message..."
+              id="chatInputFormInputField"
+              autocomplete="off"
+            />
+            <button type="submit" id="messageSendButton">
+              <svg viewBox="0 0 16px 16px" class="svg">
+                <g>
+                  <path
+                    d="M2.504 21.866l.526-2.108C3.04 19.719 4 15.823 4 12s-.96-7.719-.97-7.757l-.527-2.109L22.236 12 2.504 21.866zM5.981 13c-.072 1.962-.34 3.833-.583 5.183L17.764 12 5.398 5.818c.242 1.349.51 3.221.583 5.183H10v2H5.981z"
+                  ></path>
+                </g>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>

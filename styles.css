@@ -1,0 +1,341 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  --selectedChatBackgroundColor: #f0f3f6;
+  --dateAndLastMessageColor: #b2b3b4;
+  --headingfontSize: 20px;
+  --headingFontWeight: 700;
+  --userMessageBackgroundColor: #2873f0;
+  --botMessageBackgroundColor: #ffffff;
+  --disabledOptionColor: #f5f5f5;
+  --optionTextColor: #548ef1;
+  --optionSubTextColor: #9f9f9f;
+  --messageDateColor: #939393;
+  --leftMessageBorder: rgb(234, 234, 234);
+}
+
+/* overall layout */
+
+#mainContainer {
+  border: 5px solid black;
+  display: flex;
+  width: 100%;
+  height: 97.5vh;
+  margin: auto;
+}
+
+#messageListContainer {
+  flex: 4;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#searchBox {
+  flex: 0.5;
+  padding: 0.5em;
+  border-bottom: 0.1px solid lightgray;
+  padding-bottom: 0.8em;
+}
+
+#messageList {
+  flex: 9.5;
+  overflow-y: scroll;
+}
+
+.singleChat {
+  /* flex: 0; */
+  /* display: flex;
+  flex-direction: column; */
+  display: none;
+}
+
+.showSingleChat {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  height: 99.5%;
+  border: 0.1px solid lightgray;
+  /* display: block; */
+}
+
+#chatName {
+  flex: 0.5;
+  display: flex;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 1em;
+}
+
+/* single chat name parts */
+.chatHeadingImageContainer {
+  flex: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatHeadingImage {
+    max-height: 50px;
+    max-width: 50px;
+}
+.chatNameHeading {
+  flex: 8.5;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-weight: var(--headingFontWeight);
+  font-size: var(--headingfontSize);
+}
+
+#chatMessages {
+  flex: 9;
+  background-color: var(--selectedChatBackgroundColor);
+  overflow-y: auto;
+  /* display: flex; */
+  /* flex-direction: column;
+  justify-content: flex-end; */
+}
+
+#noMessagesNote {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
+#chatInput {
+  flex: 0.5;
+}
+
+/* each chat in message list */
+
+/* container for each message */
+
+.eachMessageContainer {
+  display: flex;
+  /* flex: 1; */
+  /* min-height: 0px; */
+  padding: 0.5em;
+  border-bottom: 0.1px solid lightgray;
+}
+
+/* optioned messages */
+.eachOption {
+  text-align: center;
+  font-weight: 500;
+
+  padding: 1em 0.5em;
+  border-bottom: 1px solid var(--leftMessageBorder);
+}
+
+.eachOption:last-child {
+  border: none;
+}
+
+.optionText {
+  color: var(--optionTextColor);
+}
+
+.optionSubText {
+  color: var(--optionSubTextColor);
+}
+
+.hideSubText {
+  display: none;
+}
+
+.disableOption {
+  background-color: var(--disabledOptionColor);
+}
+
+/* chat list filter section */
+
+.chatFilterTitle {
+  font-weight: var(--headingFontWeight);
+  font-size: var(--headingfontSize);
+  padding-bottom: 0.6em;
+}
+
+#chatSearchInputField {
+  width: 90%;
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 16px;
+}
+
+#chatSearchInputField:focus {
+  /* border: none;
+    border-bottom: 1px solid black; */
+  outline: none;
+}
+
+/* first inside of each message list item */
+.orderImageContainer {
+  flex: 0.9;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flexOrderImageContainer{
+    flex:2
+}
+
+.orderImage {
+  /* height: auto;
+  width: auto; */
+  max-height: 50px;
+  max-width: 50px;
+}
+
+/* second inside of each message list item */
+
+.messageDetails {
+  flex: 7;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+/* message details start */
+
+.messageTitle {
+  font-weight: 550;
+  padding-bottom: 0.5em;
+}
+
+.messageOrderNumber {
+  font-weight: 500;
+  padding-bottom: 0.55em;
+
+}
+
+.lastMessage {
+  color: var(--dateAndLastMessageColor);
+  margin-top: 5px;
+  font-size: 15px;
+  /* font-weight: 100; */
+}
+
+/* message details end */
+
+/* third inside of each message list item */
+
+.lastMessageDate {
+  flex: 0.8;
+  color: var(--dateAndLastMessageColor);
+  font-weight: 600;
+}
+
+/* eachMessage */
+.eachMessage {
+  /* border: 1px solid gray; */
+  width: fit-content;
+  /* padding: 1em; */
+  border-radius: 10px;
+  margin-top: 1em;
+  overflow: hidden;
+}
+
+.eachMessage:last-child {
+  margin-bottom: 1em;
+}
+.eachMessageText {
+  padding: 0.5em;
+}
+
+.messageTime {
+  font-weight: 600;
+  font-size: 12px;
+  text-align: right;
+}
+
+.toRight {
+  margin-left: auto;
+  margin-right: 2em;
+  background-color: var(--userMessageBackgroundColor);
+  color: white;
+  box-shadow: 0.5px 0.5px 0.5px white;
+  border-top-right-radius: 0;
+}
+
+.toLeft {
+  margin-right: auto;
+  margin-left: 2em;
+  background-color: var(--botMessageBackgroundColor);
+  border: 0.5px solid var(--leftMessageBorder);
+  border-top-left-radius: 0;
+  /* box-shadow: 0.5px 0.5px 0.5px lightgray; */
+}
+
+
+
+#chatInputForm {
+  display: flex;
+  border: 1px solid lightgray;
+  height: 100%;
+}
+
+#chatInputFormInputField {
+  outline: none;
+  border: none;
+  flex: 1;
+  font-size: 20px;
+  height: 60px;
+}
+
+#messageSendButton{
+    border: none;
+    background-color: white;
+    height: 100%;
+    width: 10%;
+}
+
+#messageSendButton:hover{
+    /* border: none;
+    width: 10%; */
+    color: lightgray;
+}
+
+.messageDateHeading {
+  background-color: white;
+  padding: 0.5em 2em;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 25px;
+  font-size: 12px;
+  color: var(--messageDateColor);
+  box-shadow: 0.5px 0.5px 0.5px var(--messageDateColor);
+  margin-top: 1em;
+}
+
+.svg{
+    max-height: 30px;
+    width: 30px;
+}
+
+#noMessagesWarning{
+    text-align: center;
+    margin-top: 3em;
+}
+
+
+::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: lightgray
+  }
+  
+
+
