@@ -1,8 +1,15 @@
-import { MESSAGE_SEEN_SVG, OPTION_MESSAGE_MAPPER } from "./constants.js";
-import { formatDate, getTimeFromDate } from "./utils.js";
+import {
+  CHATS_URL,
+  MESSAGE_SEEN_SVG,
+  OPTION_MESSAGE_MAPPER,
+  SELECTED_CHAT_BACKGROUND_COLOR,
+} from "./js/constants.js";
+import {
+  createHtmlNodesFromHtmlString,
+  formatDate,
+  getTimeFromDate,
+} from "./js/utils.js";
 
-const SELECTED_CHAT_BACKGROUND_COLOR = "#f0f3f6";
-const parser = new DOMParser();
 let data = [];
 let selectedChat = null;
 let selectedChatElement = null;
@@ -14,10 +21,7 @@ const singleChat = document.querySelector(".singleChat");
 
 const chatInputForm = document.getElementById("chatInputForm");
 const messageField = document.getElementById("chatInputFormInputField");
-const TODAY = formatDate(new Date());
-const messageSendButton = document.getElementById("messageSendButton");
-
-
+export const TODAY = formatDate(new Date());
 
 const revertCurrentSelectedChatStyles = () => {
   if (selectedChatElement) {
@@ -25,24 +29,7 @@ const revertCurrentSelectedChatStyles = () => {
   }
 };
 
-const createHtmlFromHtmlString = (
-  htmlString,
-  parent,
-  eventName,
-  eventHandler
-) => {
-  const html = parser.parseFromString(htmlString, "text/html");
-  Array.from(html.body.children).forEach((each) => {
-    if (!eventName) {
-      parent.appendChild(each);
-    } else {
-      each.addEventListener(eventName, eventHandler);
-      parent.appendChild(each);
-    }
-  });
-};
-
-const createProductListItemHtmlString = (
+const createChatListItemsAndAppendToDOM = (
   productDetails,
   parent,
   eventName,
@@ -55,7 +42,7 @@ const createProductListItemHtmlString = (
     latestMessageTimestamp,
     imageURL,
   } = productDetails;
-  const eventListener = createHtmlFromHtmlString(
+  createHtmlNodesFromHtmlString(
     `
     <div class="eachMessageContainer" id='${orderId}'>
     <div class="orderImageContainer ${
@@ -92,7 +79,7 @@ const createChatHeadingHtmlStringAndAppend = () => {
     <div class="chatNameHeading">
           ${title}
     </div>`;
-  const headerHtml = createHtmlFromHtmlString(chatHeader, chatName);
+  createHtmlNodesFromHtmlString(chatHeader, chatName);
 };
 
 const optionClicked = (option) => {
@@ -162,11 +149,11 @@ const createMessagesHtmlStringAndAppend = () => {
                 `;
       }
 
-      createHtmlFromHtmlString(messageHtmlString, chatMessages); // second argument is the container to which the children of the string has to be appended
+      createHtmlNodesFromHtmlString(messageHtmlString, chatMessages); // second argument is the container to which the children of the string has to be appended
     });
   } else {
     const messageHtmlString = `<div id='noMessagesNote'>Send a message to start chatting</div>`;
-    createHtmlFromHtmlString(messageHtmlString, chatMessages);
+    createHtmlNodesFromHtmlString(messageHtmlString, chatMessages);
   }
   document.querySelectorAll(".eachOption").forEach((each) => {
     if (each.classList.contains("disableOption")) {
@@ -177,6 +164,7 @@ const createMessagesHtmlStringAndAppend = () => {
       each.style.cursor = "pointer";
     }
   });
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 };
 
 const onMessageListItemClick = (event) => {
@@ -197,7 +185,7 @@ const onMessageListItemClick = (event) => {
 
 const renderChatList = (data) => {
   const list = data.forEach((eachProduct) => {
-    const eachMessageItemNode = createProductListItemHtmlString(
+    const eachMessageItemNode = createChatListItemsAndAppendToDOM(
       eachProduct,
       messageListElement,
       "click",
@@ -211,7 +199,7 @@ const renderChatList = (data) => {
 };
 
 window.addEventListener("load", () => {
-  fetch("https://my-json-server.typicode.com/codebuds-fk/chat/chats")
+  fetch(CHATS_URL)
     .then((res) => {
       return res.json();
     })
@@ -224,7 +212,7 @@ window.addEventListener("load", () => {
     });
 });
 
-const filterProductsFromList = (e) => {
+const filterChatsBasedOnSearchFilterInput = (e) => {
   messageListElement.innerHTML = "";
 
   const filteredData = data.filter((eachChat) => {
@@ -245,7 +233,7 @@ const filterProductsFromList = (e) => {
   }
 };
 
-chatSearchInputField.oninput = filterProductsFromList;
+chatSearchInputField.oninput = filterChatsBasedOnSearchFilterInput;
 
 const addNewMessageAndRender = (messageText, messageTime) => {
   const newMessageObject = {
@@ -270,7 +258,3 @@ const handleChatInput = (e) => {
   }
 };
 chatInputForm.onsubmit = handleChatInput;
-
-
-
-// messageSendButton.innerHTML = '<svg viewBox="0 0 16px 16px" class="svg"><g><path d="M2.504 21.866l.526-2.108C3.04 19.719 4 15.823 4 12s-.96-7.719-.97-7.757l-.527-2.109L22.236 12 2.504 21.866zM5.981 13c-.072 1.962-.34 3.833-.583 5.183L17.764 12 5.398 5.818c.242 1.349.51 3.221.583 5.183H10v2H5.981z"></path></g></svg>'

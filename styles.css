@@ -44,9 +44,6 @@ body {
 }
 
 .singleChat {
-  /* flex: 0; */
-  /* display: flex;
-  flex-direction: column; */
   display: none;
 }
 
@@ -56,7 +53,6 @@ body {
   flex-direction: column;
   height: 99.5%;
   border: 0.1px solid lightgray;
-  /* display: block; */
 }
 
 #chatName {
@@ -76,8 +72,8 @@ body {
 }
 
 .chatHeadingImage {
-    max-height: 50px;
-    max-width: 50px;
+  max-height: 50px;
+  max-width: 50px;
 }
 .chatNameHeading {
   flex: 8.5;
@@ -91,9 +87,6 @@ body {
   flex: 9;
   background-color: var(--selectedChatBackgroundColor);
   overflow-y: auto;
-  /* display: flex; */
-  /* flex-direction: column;
-  justify-content: flex-end; */
 }
 
 #noMessagesNote {
@@ -115,8 +108,6 @@ body {
 
 .eachMessageContainer {
   display: flex;
-  /* flex: 1; */
-  /* min-height: 0px; */
   padding: 0.5em;
   border-bottom: 0.1px solid lightgray;
 }
@@ -166,8 +157,6 @@ body {
 }
 
 #chatSearchInputField:focus {
-  /* border: none;
-    border-bottom: 1px solid black; */
   outline: none;
 }
 
@@ -179,13 +168,11 @@ body {
   justify-content: center;
   align-items: center;
 }
-.flexOrderImageContainer{
-    flex:2
+.flexOrderImageContainer {
+  flex: 2;
 }
 
 .orderImage {
-  /* height: auto;
-  width: auto; */
   max-height: 50px;
   max-width: 50px;
 }
@@ -209,14 +196,12 @@ body {
 .messageOrderNumber {
   font-weight: 500;
   padding-bottom: 0.55em;
-
 }
 
 .lastMessage {
   color: var(--dateAndLastMessageColor);
   margin-top: 5px;
   font-size: 15px;
-  /* font-weight: 100; */
 }
 
 /* message details end */
@@ -231,9 +216,7 @@ body {
 
 /* eachMessage */
 .eachMessage {
-  /* border: 1px solid gray; */
   width: fit-content;
-  /* padding: 1em; */
   border-radius: 10px;
   margin-top: 1em;
   overflow: hidden;
@@ -250,6 +233,13 @@ body {
   font-weight: 600;
   font-size: 12px;
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 0.4em;
+}
+.messageTime > svg {
+  padding-left: 0.3em;
 }
 
 .toRight {
@@ -267,10 +257,7 @@ body {
   background-color: var(--botMessageBackgroundColor);
   border: 0.5px solid var(--leftMessageBorder);
   border-top-left-radius: 0;
-  /* box-shadow: 0.5px 0.5px 0.5px lightgray; */
 }
-
-
 
 #chatInputForm {
   display: flex;
@@ -286,17 +273,15 @@ body {
   height: 60px;
 }
 
-#messageSendButton{
-    border: none;
-    background-color: white;
-    height: 100%;
-    width: 10%;
+#messageSendButton {
+  border: none;
+  background-color: white;
+  height: 100%;
+  width: 10%;
 }
 
-#messageSendButton:hover{
-    /* border: none;
-    width: 10%; */
-    color: lightgray;
+#messageSendButton:hover {
+  color: lightgray;
 }
 
 .messageDateHeading {
@@ -312,30 +297,25 @@ body {
   margin-top: 1em;
 }
 
-.svg{
-    max-height: 30px;
-    width: 30px;
+.svg {
+  max-height: 30px;
+  width: 30px;
 }
 
-#noMessagesWarning{
-    text-align: center;
-    margin-top: 3em;
+#noMessagesWarning {
+  text-align: center;
+  margin-top: 3em;
 }
 
-
+/* scroll bar */
 ::-webkit-scrollbar {
-    width: 0px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: lightgray
-  }
-  
+  width: 0px;
+}
 
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
 
+::-webkit-scrollbar-thumb {
+  background: lightgray;
+}
