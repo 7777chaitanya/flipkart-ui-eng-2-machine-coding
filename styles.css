@@ -86,6 +86,16 @@ body {
 #chatMessages {
   flex: 9;
   background-color: var(--selectedChatBackgroundColor);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#pushChatMessagesToBottom {
+  flex-grow: 1;
+}
+
+#chatMessagesBox {
   overflow-y: auto;
 }
 

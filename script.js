@@ -15,6 +15,10 @@ let selectedChat = null;
 let selectedChatElement = null;
 const chatName = document.getElementById("chatName");
 const chatMessages = document.getElementById("chatMessages");
+const chatMessagesBox = document.getElementById("chatMessagesBox");
+const pushChatMessagesToBottom = document.getElementById(
+  "pushChatMessagesToBottom"
+);
 const chatSearchInputField = document.getElementById("chatSearchInputField");
 const messageListElement = document.getElementById("messageList");
 const singleChat = document.querySelector(".singleChat");
@@ -149,11 +153,11 @@ const createMessagesHtmlStringAndAppend = () => {
                 `;
       }
 
-      createHtmlNodesFromHtmlString(messageHtmlString, chatMessages); // second argument is the container to which the children of the string has to be appended
+      createHtmlNodesFromHtmlString(messageHtmlString, chatMessagesBox); // second argument is the container to which the children of the string has to be appended
     });
   } else {
     const messageHtmlString = `<div id='noMessagesNote'>Send a message to start chatting</div>`;
-    createHtmlNodesFromHtmlString(messageHtmlString, chatMessages);
+    createHtmlNodesFromHtmlString(messageHtmlString, pushChatMessagesToBottom);
   }
   document.querySelectorAll(".eachOption").forEach((each) => {
     if (each.classList.contains("disableOption")) {
@@ -164,12 +168,13 @@ const createMessagesHtmlStringAndAppend = () => {
       each.style.cursor = "pointer";
     }
   });
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+  chatMessagesBox.scrollTop = chatMessagesBox.scrollHeight;
 };
 
 const onMessageListItemClick = (event) => {
   chatName.innerHTML = "";
-  chatMessages.innerHTML = "";
+  chatMessagesBox.innerHTML = "";
+  pushChatMessagesToBottom.innerHTML = "";
   const allOrderImageContainers = document.querySelectorAll(
     ".orderImageContainer"
   );
@@ -244,7 +249,7 @@ const addNewMessageAndRender = (messageText, messageTime) => {
     messageType: "text",
   };
   selectedChat.messageList.push({ ...newMessageObject });
-  chatMessages.innerHTML = "";
+  chatMessagesBox.innerHTML = "";
   createMessagesHtmlStringAndAppend();
 };
 
